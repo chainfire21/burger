@@ -1,18 +1,40 @@
-<div class="container">
-    <div class="jumbotron text-center">
-        <h1 class="display-4">Eat the Burger!</h1>
+<div class="row">
+  <div class="col">
+    <div class="jumbotron jumbotron-fluid text-center">
+      <h1 class="display-4">Eat Da Burger!</h1>
     </div>
-    <div class="row">
-        <div class="col text-center">To eat</div>
-        <div class="col text-center">Eaten</div>
-    </div>
-    <div class="row justify-content-around">
-        <form class="form-inline">
-            <div class="form-group mx-sm-3 mb-2">
-                <label for="burger-input" class="sr-only">Type a burger</label>
-                <input type="password" class="form-control" id="burger-input" placeholder="Type a burger">
-            </div>
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-        </form>
-    </div>
+  </div>
 </div>
+<div class="row">
+  <h2 class="col">Burgers to be eaten!</h2>
+  <h2 class="col">Burgers eaten!</h2>
+
+</div>
+
+<div class="row">
+  <ul class="col">
+    {{#each burger}}
+    {{#unless eaten}}
+    {{> burgers/burger-block eaten=true}}
+    {{/unless}}
+    {{/each}}
+  </ul>
+  <ul class="col">
+    {{#each burger}}
+    {{#if eaten}}
+    {{> burgers/burger-block eaten=false}}
+    {{/if}}
+    {{/each}}
+  </ul>
+</div>
+
+<h3>Add a Burger</h3>
+<form class="create-form">
+  <div class="row">
+    <div class="form-group">
+      <label for="burg">Burger:</label>
+      <input type="text" id="burg" name="name">
+    </div>
+    <button type="submit" class="btn btn-success">Add Burger</button>
+  </div>
+</form>
